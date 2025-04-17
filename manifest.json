@@ -1,0 +1,17 @@
+{
+  "name": "Reddit Stream",
+  "description": "",
+  "manifest_version": 3,
+  "version": "0.0.1",
+  "icons": {
+    "16": "assets/logo-16.png",
+    "48": "assets/logo-48.png",
+    "128": "assets/logo-128.png",
+    "512": "assets/logo-512.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "reddit-stream@jellyfith"
+    }
+  }
+}
