@@ -1,27 +1,18 @@
 {
-  "$schema": "https://raw.githubusercontent.com/jasonkarns/chrome-extension-manifest-schema/refs/heads/master/manifest.schema.cson",
   "name": "Reddit Stream",
-  "description": "",
+  "description": "Open reddit threads in reddit-stream",
   "manifest_version": 3,
   "version": "0.0.1",
   "icons": {
-    "128": "assets/logo-128.png"
+    "128": "icons/icon-128.png"
   },
   "action": {
-    "default_title": "Open thread in reddit-stream",
-    "default_icon": {
-      "128": "assets/logo-128.png"
-    },
-    "default_state": "disabled",
+    "default_title": "Open thread in reddit-stream"
   },
-  "permissions": [
-    "declarativeContent"
-  ],
-  "host_permissions": [
-    "*://*.reddit.com/r/*/comments/*"
-  ],
+  "permissions": ["activeTab"],
   "background": {
-    "service_worker": "background.ts"
+    "chromium:service_worker": "background.ts",
+    "firefox:scripts": ["background.ts"]
   },
   "browser_specific_settings": {
     "gecko": {
