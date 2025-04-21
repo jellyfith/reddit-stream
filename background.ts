@@ -1,6 +1,8 @@
 import icon from './icons/icon-128.png';
 import disabledIcon from './icons/disabled-128.png';
 
+// Browser Action
+
 browser.tabs.onUpdated.addListener((tabId, _, tab) => {
   console.log('tab updated', tabId, tab);
   const isRedditUrl =
@@ -27,6 +29,47 @@ browser.action.onClicked.addListener((tab) => {
       url: 'http://reddit-stream.com/comments/' + id,
       index: tab.index + 1,
       openerTabId: tab.id,
+      active: true,
+    });
+  }
+});
+
+// Context Menu
+
+browser.contextMenus.create({
+  id: 'reddit-stream-link',
+  title: 'Open in Reddit Stream',
+  contexts: ['link'],
+  targetUrlPatterns: ['*://www.reddit.com/r/*/comments/*'],
+});
+
+browser.contextMenus.create({
+  id: 'reddit-stream',
+  title: 'Open in Reddit Stream',
+  contexts: ['page'],
+  documentUrlPatterns: ['*://www.reddit.com/r/*/comments/*'],
+});
+
+browser.contextMenus.onClicked.addListener((info, tab) => {
+  if (info.menuItemId === 'reddit-stream') {
+    if (tab?.url) {
+      const split = tab.url.split('/');
+      const id = split[split.indexOf('comments') + 1];
+      browser.tabs.create({
+        url: 'http://reddit-stream.com/comments/' + id,
+        index: tab.index + 1,
+        openerTabId: tab.id,
+        active: true,
+      });
+    }
+  }
+  if (info.menuItemId === 'reddit-stream-link' && info.linkUrl) {
+    const split = info.linkUrl.split('/');
+    const id = split[split.indexOf('comments') + 1];
+    browser.tabs.create({
+      url: 'http://reddit-stream.com/comments/' + id,
+      index: tab?.index ? tab.index + 1 : undefined,
+      openerTabId: tab?.id,
       active: true,
     });
   }

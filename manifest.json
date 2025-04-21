@@ -9,7 +9,7 @@
   "action": {
     "default_title": "Open thread in reddit-stream"
   },
-  "permissions": ["activeTab"],
+  "permissions": ["activeTab", "contextMenus"],
   "background": {
     "chromium:service_worker": "background.ts",
     "firefox:scripts": ["background.ts"]
