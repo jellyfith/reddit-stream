@@ -1,5 +1,5 @@
-import icon from './icons/icon-128.png';
-import disabledIcon from './icons/disabled-128.png';
+import icon from '../icons/icon-128.png';
+import disabledIcon from '../icons/disabled-128.png';
 
 // Browser Action
 

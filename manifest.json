@@ -9,10 +9,17 @@
   "action": {
     "default_title": "Open thread in reddit-stream"
   },
+  "firefox:page_action": {
+    "default_title": "Open thread in reddit-stream",
+    "default_icon": {
+      "128": "icons/icon-128.png"
+    },
+    "show_matches": ["*://*.reddit.com/r/*/comments/*"]
+  },
   "permissions": ["activeTab", "contextMenus"],
   "background": {
-    "chromium:service_worker": "background.ts",
-    "firefox:scripts": ["background.ts"]
+    "chromium:service_worker": "background/general.ts",
+    "firefox:scripts": ["background/general.ts", "background/page-action.ts"]
   },
   "browser_specific_settings": {
     "gecko": {
