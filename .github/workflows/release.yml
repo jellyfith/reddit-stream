@@ -31,28 +31,13 @@ jobs:
       - name: Create build directory
         run: mkdir ./builds
 
-      # Build for Firefox, Chrome and Edge
-      - name: Build for Firefox
-        run: npm run build:ci:firefox
+      #### Chrome
+
+      # Build for Chrome
       - name: Build for Chrome
         run: npm run build:ci:chrome
 
-      # Sign & Upload Firefox artifacts
-      - name: Sign and Publish artifact
-        continue-on-error: true
-        env:
-          FIREFOX_ISSUER: ${{ secrets.FIREFOX_ISSUER }}
-          FIREFOX_SECRET: ${{ secrets.FIREFOX_SECRET }}
-        run: npx web-ext sign --channel listed -s ./dist/firefox/ --upload-source-code  ../builds/Source.zip --artifacts-dir ./dist/firefox --api-key $FIREFOX_ISSUER --api-secret $FIREFOX_SECRET
-      - name: Move artifact
-        run: mv ./dist/firefox/reddit-stream-*.xpi ./builds/FirefoxExtension.xpi
-      - name: Upload FirefoxExtension to release
-        uses: Shopify/upload-to-release@07611424e04f1475ddf550e1c0dd650b867d5467
-        with:
-          name: FirefoxExtension.xpi
-          path: ./builds/FirefoxExtension.xpi
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-
+      # Sign & Upload Chrome artifacts
       - name: Zip Chrome Artifacts
         run: cd ./dist/chrome ; zip -r ../../builds/ChromeExtension.zip *
       - name: Upload ChromeExtension to release
@@ -70,3 +55,25 @@ jobs:
           refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
           zip-path: './builds/ChromeExtension.zip'
           extension-id: 'ogfndkbfjmfnbjbclhmoekccoikglomd'
+
+      #### Firefox
+
+      # Build for Firefox
+      - name: Build for Firefox
+        run: npm run build:ci:firefox
+
+      # Sign & Upload Firefox artifacts
+      - name: Sign and Publish artifact
+        continue-on-error: true
+        env:
+          FIREFOX_ISSUER: ${{ secrets.FIREFOX_ISSUER }}
+          FIREFOX_SECRET: ${{ secrets.FIREFOX_SECRET }}
+        run: npx web-ext sign --channel listed -s ./dist/firefox/ --upload-source-code  ../builds/Source.zip --artifacts-dir ./dist/firefox --api-key $FIREFOX_ISSUER --api-secret $FIREFOX_SECRET
+      - name: Move artifact
+        run: mv ./dist/firefox/*.xpi ./builds/FirefoxExtension.xpi
+      - name: Upload FirefoxExtension to release
+        uses: Shopify/upload-to-release@07611424e04f1475ddf550e1c0dd650b867d5467
+        with:
+          name: FirefoxExtension.xpi
+          path: ./builds/FirefoxExtension.xpi
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
