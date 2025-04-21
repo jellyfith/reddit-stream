@@ -15,10 +15,10 @@
     "start": "extension start"
   },
   "devDependencies": {
-    "extension": "^2.0.0-beta.5",
+    "extension": "^2.0.0-rc.23",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.4.2",
     "typescript": "~5.6.2",
-    "web-ext": "^8.3.0"
+    "web-ext": "^8.5.0"
   }
 }
