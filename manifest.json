@@ -2,7 +2,7 @@
   "name": "Reddit Stream",
   "description": "Open reddit threads in reddit-stream",
   "manifest_version": 3,
-  "version": "1.2.0",
+  "version": "1.2.1",
   "icons": {
     "128": "icons/icon-128.png"
   },
