@@ -18,8 +18,8 @@
   },
   "permissions": ["activeTab", "contextMenus"],
   "background": {
-    "chromium:service_worker": "background/general.ts",
-    "firefox:scripts": ["background/general.ts", "background/page-action.ts"]
+    "chromium:service_worker": "background.ts",
+    "firefox:scripts": ["background.ts"]
   },
   "browser_specific_settings": {
     "gecko": {
