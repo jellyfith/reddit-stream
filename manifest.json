@@ -2,7 +2,7 @@
   "name": "Reddit Stream",
   "description": "Open reddit threads in reddit-stream",
   "manifest_version": 3,
-  "version": "1.2.0",
+  "version": "1.2.1",
   "icons": {
     "128": "icons/icon-128.png"
   },
@@ -18,8 +18,8 @@
   },
   "permissions": ["activeTab", "contextMenus"],
   "background": {
-    "chromium:service_worker": "background/general.ts",
-    "firefox:scripts": ["background/general.ts", "background/page-action.ts"]
+    "chromium:service_worker": "background.ts",
+    "firefox:scripts": ["background.ts"]
   },
   "browser_specific_settings": {
     "gecko": {

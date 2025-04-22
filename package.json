@@ -1,6 +1,6 @@
 {
   "name": "reddit-stream",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "type": "module",
   "scripts": {
     "build": "extension build --browser all --zip true --zip-filename reddit-stream --zip-source true --polyfill",
